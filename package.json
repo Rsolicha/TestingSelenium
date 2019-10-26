@@ -1,0 +1,29 @@
+{
+    "name": "pruebascajanegra",
+    "version": "1.0.0",
+    "description": "Pruebas de Caja Negra Proyecto Tim QA",
+    "main": "index.js",
+    "directories": {
+        "test": "node test/gg.spec.js"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "author": "Ignacio Cruz, Daniel Rodriguez, Royland Solis",
+    "license": "ISC",
+    "dependencies": {
+        "@types/jasmine": "^3.4.4",
+        "@types/node": "^12.11.7",
+        "jasmine": "^3.5.0",
+        "jasmine-spec-reporter": "^4.2.1",
+        "jasminewd2": "^2.2.0",
+        "protractor": "^5.4.2",
+        "protractor-html-reporter-2": "^1.0.4",
+        "tslint": "^5.20.0",
+        "yargs": "^14.2.0"
+    },
+    "devDependencies": {
+        "ts-node": "^8.4.1",
+        "typescript": "^3.6.4"
+    }
+}
