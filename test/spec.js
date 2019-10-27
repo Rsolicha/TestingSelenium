@@ -1,5 +1,5 @@
 describe('Login', function() {
-    beforeAll(async function() {
+    beforeEach(async function() {
         await browser.waitForAngularEnabled(false);
         await browser.get("https://qa.timtravel.app/");
         //Add username
@@ -13,35 +13,8 @@ describe('Login', function() {
 
     });
 
-    beforeEach(async function() {
-        await browser.get("https://qa.timtravel.app/#!/bookings/new");
-    });
-
-    afterAll(async function() {
-        browser.restart();
-    });
-
     afterEach(function() {
-        //Button for select time transport
-        element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
-            browser.sleep(1500);
-        });
-        //Select for decide a pick up
-        element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
-            browser.sleep(2000);
-        });
-        //Select GH pick up
-        element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
-            browser.sleep(1000);
-        });
-        //Select for decide a drop off
-        element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
-            browser.sleep(2000);
-        });
-        //Select GH pick up
-        element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
-            browser.sleep(1000);
-        });
+
         //Button calendar to November
         element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[2]/div/availability-calendar/div/div[1]/div[1]/button[4]`)).click().then(function() {
             browser.sleep(1500);
@@ -124,11 +97,974 @@ describe('Login', function() {
         element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[1]/div[2]/span[3]`)).click().then(function() {
             browser.sleep(1500);
         });
-        browser.refresh();
+        browser.restart();
     });
 
-    it('Nombre de usuario requerido', async function() {
+    // it('P1 CrearBookingSinNombrePL0Cur0DT0BV0SS0Own0SC0PM0', async function() {
+    //     browser.sleep(1000);
+    //     //Button booking
+    //     element(by.xpath(`//*[@id="nav"]/li[1]/span`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Write client name 
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[1]/div/div/div/input`)).sendKeys('Da').then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select user
+    //     element(by.xpath(`//*[@class="dropdown-menu ng-isolate-scope"]/li[1]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select with options of price list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[2]/div[2]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select price list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-4-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select with options of currency
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[2]/div[2]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select currency list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-5-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-0-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[1]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-1-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[2]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-2-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[3]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-3-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[4]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-6-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[5]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-7-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Button add booking
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button add transportation
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/span/button[2]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button for select time transport
+    //     element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select for decide a pick up
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select for decide a drop off
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    // });
 
+    // it('P2 CrearBookingSinNombrePL0Cur0DT0BV0SS0Own0SC0PM1', async function() {
+    //     browser.sleep(1000);
+    //     //Button booking
+    //     element(by.xpath(`//*[@id="nav"]/li[1]/span`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Write client name 
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[1]/div/div/div/input`)).sendKeys('Da').then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select user
+    //     element(by.xpath(`//*[@class="dropdown-menu ng-isolate-scope"]/li[1]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select with options of price list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[2]/div[2]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select price list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-4-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select with options of currency
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[2]/div[2]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select currency list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-5-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-0-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[1]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-1-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[2]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-2-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[3]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-3-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[4]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-6-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[5]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-7-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Button add booking
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button add transportation
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/span/button[2]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button for select time transport
+    //     element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select for decide a pick up
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select for decide a drop off
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    // });
+    // it('P3 CrearBookingSinNombrePL0Cur0DT0BV0SS0Own1SC1PM1', async function() {
+    //     browser.sleep(1000);
+    //     //Button booking
+    //     element(by.xpath(`//*[@id="nav"]/li[1]/span`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Write client name 
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[1]/div/div/div/input`)).sendKeys('Da').then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select user
+    //     element(by.xpath(`//*[@class="dropdown-menu ng-isolate-scope"]/li[1]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select with options of price list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[2]/div[2]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select price list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-4-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select with options of currency
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[2]/div[2]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select currency list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-5-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-0-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[1]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-1-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[2]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-2-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[3]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-3-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[4]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-6-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[5]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-7-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Button add booking
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button add transportation
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/span/button[2]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button for select time transport
+    //     element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select for decide a pick up
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select for decide a drop off
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    // });
+    // it('P4 CrearBookingSinNombrePL0Cur0DT0BV0SS1Own1SC1PM1', async function() {
+    //     browser.sleep(1000);
+    //     //Button booking
+    //     element(by.xpath(`//*[@id="nav"]/li[1]/span`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Write client name 
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[1]/div/div/div/input`)).sendKeys('Da').then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select user
+    //     element(by.xpath(`//*[@class="dropdown-menu ng-isolate-scope"]/li[1]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select with options of price list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[2]/div[2]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select price list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-4-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select with options of currency
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[2]/div[2]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select currency list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-5-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-0-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[1]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-1-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[2]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-2-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[3]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-3-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[4]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-6-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[5]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-7-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Button add booking
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button add transportation
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/span/button[2]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button for select time transport
+    //     element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select for decide a pick up
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select for decide a drop off
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    // });
+    // it('P5 CrearBookingSinNombrePL0Cur0DT0BV1SS1Own1SC1PM1', async function() {
+    //     browser.sleep(1000);
+    //     //Button booking
+    //     element(by.xpath(`//*[@id="nav"]/li[1]/span`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Write client name 
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[1]/div/div/div/input`)).sendKeys('Da').then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select user
+    //     element(by.xpath(`//*[@class="dropdown-menu ng-isolate-scope"]/li[1]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select with options of price list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[2]/div[2]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select price list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-4-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select with options of currency
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[2]/div[2]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select currency list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-5-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-0-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[1]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-1-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[2]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-2-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[3]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-3-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[4]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-6-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[5]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-7-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Button add booking
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button add transportation
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/span/button[2]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button for select time transport
+    //     element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select for decide a pick up
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select for decide a drop off
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    // });
+    // it('P6 CrearBookingSinNombrePL0Cur1DT0BV1SS1Own1SC1PM1', async function() {
+    //     browser.sleep(1000);
+    //     //Button booking
+    //     element(by.xpath(`//*[@id="nav"]/li[1]/span`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Write client name 
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[1]/div/div/div/input`)).sendKeys('Da').then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select user
+    //     element(by.xpath(`//*[@class="dropdown-menu ng-isolate-scope"]/li[1]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select with options of price list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[2]/div[2]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select price list position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-4-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select with options of currency
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[2]/div[2]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select currency list position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-5-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-0-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[1]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-1-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[2]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-2-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[3]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-3-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[4]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-6-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[5]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-7-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Button add booking
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button add transportation
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/span/button[2]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button for select time transport
+    //     element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select for decide a pick up
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select for decide a drop off
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    // });
+    // it('P7 CrearBookingSinNombrePL1Cur1DT0BV1SS1Own1SC1PM1', async function() {
+    //     browser.sleep(1000);
+    //     //Button booking
+    //     element(by.xpath(`//*[@id="nav"]/li[1]/span`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Write client name 
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[1]/div/div/div/input`)).sendKeys('Da').then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select user
+    //     element(by.xpath(`//*[@class="dropdown-menu ng-isolate-scope"]/li[1]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select with options of price list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[2]/div[2]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select price list position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-4-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select with options of currency
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[2]/div[2]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select currency list position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-5-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-0-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[1]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-1-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[2]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-2-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[3]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-3-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[4]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-6-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[5]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-7-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Button add booking
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button add transportation
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/span/button[2]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button for select time transport
+    //     element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select for decide a pick up
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select for decide a drop off
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    // });
+    // it('P8 CrearBookingSinNombrePL1Cur1DT0BV1SS1Own1SC1PM2', async function() {
+    //     browser.sleep(1000);
+    //     //Button booking
+    //     element(by.xpath(`//*[@id="nav"]/li[1]/span`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Write client name 
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[1]/div/div/div/input`)).sendKeys('Da').then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select user
+    //     element(by.xpath(`//*[@class="dropdown-menu ng-isolate-scope"]/li[1]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select with options of price list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[2]/div[2]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select price list position 2
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-4-2"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select with options of currency
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[2]/div[2]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select currency list position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-5-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-0-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[1]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-1-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[2]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-2-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[3]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-3-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[4]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-6-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[5]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-7-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Button add booking
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button add transportation
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/span/button[2]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button for select time transport
+    //     element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select for decide a pick up
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select for decide a drop off
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    // });
+    // it('P9 CrearBookingSinNombrePL0Cur1DT0BV1SS1Own1SC1PM2', async function() {
+    //     browser.sleep(1000);
+    //     //Button booking
+    //     element(by.xpath(`//*[@id="nav"]/li[1]/span`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Write client name 
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[1]/div/div/div/input`)).sendKeys('Da').then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select user
+    //     element(by.xpath(`//*[@class="dropdown-menu ng-isolate-scope"]/li[1]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select with options of price list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[1]/div[2]/div[2]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select price list position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-4-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select with options of currency
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[2]/div[2]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select currency list position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-5-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Document type position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-0-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[1]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Booked via position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-1-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[2]/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sales source position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-2-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[3]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Owner position 1
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-3-1"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[4]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Sale condition position 0
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-6-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method select list
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[5]/div/div/div[2]/div/div/a`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Payment method position 2
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-7-2"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Button add booking
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button add transportation
+    //     element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/span/button[2]`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Button for select time transport
+    //     element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
+    //         browser.sleep(1500);
+    //     });
+    //     //Select for decide a pick up
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    //     //Select for decide a drop off
+    //     element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
+    //         browser.sleep(2000);
+    //     });
+    //     //Select GH pick up
+    //     element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
+    //         browser.sleep(1000);
+    //     });
+    // });
+    it('P10 CrearBookingSinNombrePL0Cur1DT0BV1SS1Own1SC1PM2', async function() {
         browser.sleep(1000);
         //Button booking
         element(by.xpath(`//*[@id="nav"]/li[1]/span`)).click().then(function() {
@@ -154,8 +1090,8 @@ describe('Login', function() {
         element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[2]/div[2]/div[2]/div/div/div/div/a`)).click().then(function() {
             browser.sleep(1000);
         });
-        //Select currency list position 0
-        element(by.xpath(`//*[@id="ui-select-choices-row-5-0"]`)).click().then(function() {
+        //Select currency list position 1
+        element(by.xpath(`//*[@id="ui-select-choices-row-5-1"]`)).click().then(function() {
             browser.sleep(1000);
         });
         //Document type select list
@@ -166,34 +1102,30 @@ describe('Login', function() {
         element(by.xpath(`//*[@id="ui-select-choices-row-0-0"]`)).click().then(function() {
             browser.sleep(1000);
         });
-
         //Booked via select list
         element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[1]/div/div[2]/div/div/a`)).click().then(function() {
             browser.sleep(1000);
         });
-        //Booked via position 0
-        element(by.xpath(`//*[@id="ui-select-choices-row-1-0"]`)).click().then(function() {
+        //Booked via position 1
+        element(by.xpath(`//*[@id="ui-select-choices-row-1-1"]`)).click().then(function() {
             browser.sleep(1000);
         });
-
         //Sales source select list
         element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[2]/div/div[2]/div/div/a`)).click().then(function() {
             browser.sleep(1000);
         });
-        //Sales source position 0
-        element(by.xpath(`//*[@id="ui-select-choices-row-2-0"]`)).click().then(function() {
+        //Sales source position 1
+        element(by.xpath(`//*[@id="ui-select-choices-row-2-1"]`)).click().then(function() {
             browser.sleep(1000);
         });
-
         //Owner select list
         element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[3]/div/div/div/a`)).click().then(function() {
             browser.sleep(1000);
         });
-        //Owner position 0
-        element(by.xpath(`//*[@id="ui-select-choices-row-3-0"]`)).click().then(function() {
+        //Owner position 1
+        element(by.xpath(`//*[@id="ui-select-choices-row-3-1"]`)).click().then(function() {
             browser.sleep(1000);
         });
-
         //Sale condition select list
         element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[4]/div/div/div[2]/div/div/a`)).click().then(function() {
             browser.sleep(1000);
@@ -202,26 +1134,41 @@ describe('Login', function() {
         element(by.xpath(`//*[@id="ui-select-choices-row-6-0"]`)).click().then(function() {
             browser.sleep(1000);
         });
-
         //Payment method select list
         element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[1]/div[3]/div[5]/div/div/div[2]/div/div/a`)).click().then(function() {
             browser.sleep(1000);
         });
-        //Payment method position 0
-        element(by.xpath(`//*[@id="ui-select-choices-row-7-0"]`)).click().then(function() {
+        //Payment method position 2
+        element(by.xpath(`//*[@id="ui-select-choices-row-7-2"]`)).click().then(function() {
             browser.sleep(1000);
         });
-
         //Button add booking
         element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/button`)).click().then(function() {
             browser.sleep(1500);
-        })
-
+        });
         //Button add transportation
         element(by.xpath(`//*[@id="content"]/div/div[3]/div/div/div/div/ui-view/booking-detail-component/div/booking-detail/div[2]/div/div/form/div[2]/span/button[2]`)).click().then(function() {
             browser.sleep(1500);
-        })
-    })
-
-
+        });
+        //Button for select time transport
+        element(by.xpath(`//*[@id="scroller-table"]/table[2]/tbody/tr/td/button`)).click().then(function() {
+            browser.sleep(1500);
+        });
+        //Select for decide a pick up
+        element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[6]/div/div/div[1]/a`)).click().then(function() {
+            browser.sleep(2000);
+        });
+        //Select GH pick up
+        element(by.xpath(`//*[@id="ui-select-choices-row-10-0"]`)).click().then(function() {
+            browser.sleep(1000);
+        });
+        //Select for decide a drop off
+        element(by.xpath(`/html/body/div[3]/div[2]/div/div/booking-item-detail/form/div[1]/div/div/div[1]/div[7]/div/div/div/a`)).click().then(function() {
+            browser.sleep(2000);
+        });
+        //Select GH pick up
+        element(by.xpath(`//*[@id="ui-select-choices-row-11-0"]`)).click().then(function() {
+            browser.sleep(1000);
+        });
+    });
 })
