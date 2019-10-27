@@ -6,7 +6,7 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
     framework: 'jasmine',
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    specs: ['./test/spec.js'],
+    specs: ['./tests/spec.js'],
     capabilities: {
         browserName: 'chrome',
         chromeOptions: {
@@ -24,4 +24,6 @@ exports.config = {
     }
 };
 //usar npm i
+//webdriver-manager update
+//webdriver-manager start
 //PARA CORRER USAR protractor protractor.conf.js
