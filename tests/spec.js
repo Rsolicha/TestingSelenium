@@ -1,5 +1,5 @@
 describe('Login', function() {
-    beforeEach(async function() {
+    beforeAll(async function() {
         await browser.waitForAngularEnabled(false);
         await browser.get("https://qa.timtravel.app/");
         //Add username
@@ -10,6 +10,12 @@ describe('Login', function() {
         element(by.xpath(`//*[@id="content"]/div/div[2]/div/div/div/div/ui-view/login-component/div/div[2]/div[1]/form/div[3]/button`)).click().then(function() {
             browser.sleep(2000);
         });
+
+    });
+
+    beforeEach(async function() {
+
+        await browser.get("https://qa.timtravel.app/");
 
     });
 
